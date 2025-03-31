@@ -3,9 +3,10 @@
     <el-upload
       class="upload-demo"
       drag
-      action="/api/data/upload"
+      :action="uploadUrl"
       :on-success="handleSuccess"
       :on-error="handleError"
+      :headers="headers"
       accept=".csv"
     >
       <el-icon class="el-icon--upload"><upload-filled /></el-icon>
@@ -44,7 +45,11 @@ export default {
   },
   data() {
     return {
-      fileId: null
+      fileId: null,
+      uploadUrl: 'http://localhost:7001/data/upload',
+      headers: {
+        // 如果需要添加额外的请求头
+      }
     }
   },
   methods: {
@@ -52,7 +57,8 @@ export default {
       this.fileId = response
       ElMessage.success('文件上传成功')
     },
-    handleError() {
+    handleError(error) {
+      console.error('上传错误:', error)
       ElMessage.error('文件上传失败')
     },
     viewData() {
