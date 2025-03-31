@@ -1,0 +1,15 @@
+server:
+  port: 7001
+
+spring:
+  application:
+    name: data-replay-platform
+
+  # 跨域配置
+  mvc:
+    cors:
+      allowed-origins: "http://localhost:9090"
+      allowed-methods: "*"
+      allowed-headers: "*"
+      allow-credentials: true
+      max-age: 3600
